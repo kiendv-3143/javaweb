@@ -1,7 +1,7 @@
 package com.jspservlet.controller.web;
 
 import com.jspservlet.model.UserModel;
-import com.jspservlet.service.UserInterfaceService;
+import com.jspservlet.service.UserServiceInterface;
 import com.jspservlet.service.implement.UserService;
 import com.jspservlet.utils.FormUtil;
 import jakarta.servlet.RequestDispatcher;
@@ -37,7 +37,7 @@ public class AuthenticationController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
 			UserModel userModel = FormUtil.toModel(UserModel.class, req);
-			UserInterfaceService userService = new UserService();
+			UserServiceInterface userService = new UserService();
 			UserModel user = userService.findUserByUserName(userModel.getUserName());
 			boolean passwordMatch = BCrypt.checkpw(userModel.getPassword(), user.getPassword());
 			if (!passwordMatch) {
