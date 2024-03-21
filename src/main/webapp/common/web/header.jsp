@@ -13,15 +13,19 @@
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
+                <c:if test="${not empty user}">
                 <li class="nav-item">
-                    <a class="nav-link" href='#'>Wellcome, </a>
+                    <a class="nav-link" href='#'>Wellcome, ${user.userName}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href='<c:url value="/logout?action=logout"/>'>Logout</a>
+                    <a class="nav-link" href='<c:url value="/logout"/>'>Logout</a>
                 </li>
+                </c:if>
+                <c:if test="${empty user}">
                 <li class="nav-item">
-                    <a class="nav-link" href='<c:url value="/login?action=login"/>'>Login</a>
+                    <a class="nav-link" href='<c:url value="/login"/>'>Login</a>
                 </li>
+                </c:if>
             </ul>
         </div>
     </div>
